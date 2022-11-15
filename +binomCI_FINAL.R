@@ -25,7 +25,7 @@ binomCI <- function(k_p,
   #   upto_sp: Heuristic adjustment used to improve coverage until k_sp = upto_sp
   #
   # Returns:
-  #   A vector containing the adjusted LCL and UCL of the PLCI.
+  #   The observed Sensitivity, Speicificity, Prevalence, the Rogan-Gladen true prevalence and the adjusted PLCI.
   
   PLCI2022 <- function(k_p, 
                        n_p, 
