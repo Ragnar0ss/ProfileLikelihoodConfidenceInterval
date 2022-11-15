@@ -1,4 +1,3 @@
-
 binomCI <- function(k_p,
                     n_p,
                     k_se,
@@ -6,8 +5,9 @@ binomCI <- function(k_p,
                     k_sp,
                     n_sp,
                     conf = 0.95,
-                    alt = "t",
+                    alt = "two.sided",
                     toler = 0.0001) {
+  
   # Function to calculate an adjusted Profile Likelihood Confidence Interval for a Prevalence when Sensitivity and / or Specificity is below 100%.
   #  
   # Args:
@@ -27,6 +27,8 @@ binomCI <- function(k_p,
   # Returns:
   #   The observed Sensitivity, Speicificity, Prevalence, the Rogan-Gladen true prevalence and the adjusted PLCI.
   
+  alt <- match.arg(alt, choices = c("two.sided", "less", "greater"))
+  
   PLCI2022 <- function(k_p, 
                        n_p, 
                        k_se, 
@@ -34,7 +36,7 @@ binomCI <- function(k_p,
                        k_sp, 
                        n_sp, 
                        conf.level = 0.95, 
-                       alt = "two.sided", 
+                       alt = alt, 
                        toler = 0.0001) {
     
     # Function to calculate the Profile Likelihood Confidence Interval for a Prevalence when Sensitivity and / or Specificity is below 100%.
@@ -211,4 +213,4 @@ binomCI <- function(k_p,
       "Adjusted ", round(100*conf), "% CI: ", round(CI[1],4), " - ", round(CI[2],4), "\n",sep="")
 }
 
-binomCI(k_p=711,n_p=11862, k_se=8, n_se=10, k_sp=12, n_sp=12, alt="t", toler=.000001)
+binomCI(k_p=711,n_p=11862, k_se=8, n_se=10, k_sp=12, n_sp=12, alt="less", toler=.000001)
